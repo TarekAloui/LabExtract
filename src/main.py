@@ -15,6 +15,11 @@ async def extract_info_endpoint(file: UploadFile = File(...)):
 
     # Extract the information from the file
     extracted_data = extract_info(temp_file_path)
+    extracted_data = (
+        extracted_data["lab_report"]
+        if "lab_report" in extracted_data
+        else extracted_data
+    )
 
     # Remove the temporary file
     os.remove(temp_file_path)

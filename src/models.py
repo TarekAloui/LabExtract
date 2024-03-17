@@ -1,17 +1,18 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class PhysicianInfo(BaseModel):
-    name: str
+    name: Optional[str]
 
 
 class PatientInfo(BaseModel):
-    name: str
-    dob: str
-    address: str
-    gender: str
+    name: Optional[str]
+    dob: Optional[str]
+    address: Optional[str]
+    gender: Optional[str]
 
 
 class LabReportInfo(BaseModel):
-    physician: PhysicianInfo
-    patient: PatientInfo
+    physician: Optional[PhysicianInfo]
+    patient: Optional[PatientInfo]
