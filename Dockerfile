@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     poppler-utils \
     pandoc \
     cmake \
+    protobuf-compiler \
+    libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
