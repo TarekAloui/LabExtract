@@ -28,7 +28,10 @@ def extract_info_from_db(vector_db):
         id="patient",
         description="Patient information from the lab report",
         attributes=[
-            Text(id="name", description="Patient's full name"),
+            Text(
+                id="name",
+                description="Patient's full name, do not include city or address",
+            ),
             Text(id="dob", description="Patient's date of birth"),
             Text(id="address", description="Patient's address"),
             Text(
@@ -42,7 +45,10 @@ def extract_info_from_db(vector_db):
         id="physician",
         description="Ordering physician information",
         attributes=[
-            Text(id="name", description="Ordering Physician's full name"),
+            Text(
+                id="name",
+                description="Ordering Physician's full name, do not include city or address",
+            ),
         ],
     )
 
