@@ -9,7 +9,9 @@ app = FastAPI()
 @app.post("/extract-info/", response_model=LabReportInfo)
 async def extract_info_endpoint(file: UploadFile = File(...)):
     # Save the uploaded file temporarily
-    temp_file_path = f"tmp/temp_{file.filename}"
+    if not os.path.exists("tmp"):
+        os.makedirs("tmp")
+    temp_file_path = f"/tmp/temp_{file.filename}"
     with open(temp_file_path, "wb") as buffer:
         buffer.write(await file.read())
 
