@@ -1,7 +1,7 @@
 # Project Information:
 - The project uses unstructured for extracting the text from the document (including using OCR if the input is an image)
 - The project uses langchain and kor extraction_chain in order to extract the relevant fields
-- The llm model used is `gpt-3.5-turbo`
+- The llm model used is `gpt-4-1106-preview`
 
 # How to run the endpoint locally
 
