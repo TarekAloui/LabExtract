@@ -1,17 +1,17 @@
-FROM python:latest
+FROM downloads.unstructured.io/unstructured-io/unstructured:latest
 
 WORKDIR /app
 
 COPY src /app/
-RUN apt-get update && apt-get install -y \
-    libmagic-dev \
-    poppler-utils \
-    tesseract-ocr \
-    tesseract-ocr-eng \
-    libreoffice \
-    pandoc \
-    cmake \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y \
+#     libmagic-dev \
+#     poppler-utils \
+#     tesseract-ocr \
+#     tesseract-ocr-eng \
+#     libreoffice \
+#     pandoc \
+#     cmake \
+#     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
