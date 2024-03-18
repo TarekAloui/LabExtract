@@ -7,6 +7,9 @@ from kor.extraction import create_extraction_chain
 from langchain_openai import ChatOpenAI
 from kor.nodes import Object, Text
 
+# Set to True to use GPT-4 instead of GPT-3.5-turbo
+USE_GPT4 = True
+
 
 def file_to_vector_db(file_path="lab_report.jpeg"):
     # Load the image file and extract text
@@ -29,13 +32,13 @@ def extract_info_from_db(vector_db):
         description="Patient information from the lab report",
         attributes=[
             Text(
-                id="name",
+                id="patient_name",
                 description="Patient's full name, do not include city or address",
             ),
-            Text(id="dob", description="Patient's date of birth"),
-            Text(id="address", description="Patient's address"),
+            Text(id="patient_dob", description="Patient's date of birth"),
+            Text(id="patient_address", description="Patient's address"),
             Text(
-                id="gender",
+                id="patient_gender",
                 description="Patient's gender. Options: M (Male), F (Female), O (Other)",
             ),
         ],
@@ -46,8 +49,8 @@ def extract_info_from_db(vector_db):
         description="Ordering physician information",
         attributes=[
             Text(
-                id="name",
-                description="Ordering Physician's full name, do not include city or address",
+                id="physician_name",
+                description="Ordering Physician's full name, do not include unnecessary information such as two-letter state abbreviations",
             ),
         ],
     )
@@ -56,14 +59,17 @@ def extract_info_from_db(vector_db):
         id="lab_report",
         description="Lab report information",
         attributes=[
-            physician_schema,
             patient_schema,
+            physician_schema,
         ],
         many=False,
     )
 
     # Create the extraction chain using Kor
-    llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+
+    llm = ChatOpenAI(
+        temperature=0, model="gpt-4-1106-preview" if USE_GPT4 else "gpt-3.5-turbo"
+    )
     extraction_chain = create_extraction_chain(
         llm, lab_report_schema, encoder_or_encoder_class="json"
     )

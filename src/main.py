@@ -1,7 +1,7 @@
 import os
 from fastapi import FastAPI, File, UploadFile
-from .services import extract_info
-from .models import LabReportInfo
+from src.services import extract_info
+from src.models import LabReportInfo
 
 app = FastAPI()
 

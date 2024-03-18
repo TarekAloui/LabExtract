@@ -3,16 +3,16 @@ from typing import Optional
 
 
 class PhysicianInfo(BaseModel):
-    name: Optional[str]
+    physician_name: Optional[str]
 
 
 class PatientInfo(BaseModel):
-    name: Optional[str]
-    dob: Optional[str]
-    address: Optional[str]
-    gender: Optional[str]
+    patient_name: Optional[str]
+    patient_dob: Optional[str]
+    patient_address: Optional[str]
+    patient_gender: Optional[str]
 
 
 class LabReportInfo(BaseModel):
-    physician: Optional[PhysicianInfo]
     patient: Optional[PatientInfo]
+    physician: Optional[PhysicianInfo]
