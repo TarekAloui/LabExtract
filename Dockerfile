@@ -4,12 +4,14 @@ WORKDIR /app
 
 COPY src /app/
 RUN apt-get update && apt-get install -y \
-    tesseract-ocr \
+    libmagic-dev \
     poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    libreoffice \
     pandoc \
     cmake \
     protobuf-compiler \
-    libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/requirements.txt

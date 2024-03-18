@@ -11,6 +11,5 @@ langchain-community
 faiss-cpu
 kor
 pillow
-unstructured[local-inference]
-libmagic
+unstructured[all-docs]
 pytesseract
